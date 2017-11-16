@@ -51,7 +51,7 @@ resource "aws_instance" "aws-k8s-master" {
   key_name               = "${var.aws_key_name}"
   tags {
     Name = "k8s-master"
-    kubespray-role = "kube-master,etcd"
+    kubespray-role = "kube-master, etcd"
   }
 }
 
