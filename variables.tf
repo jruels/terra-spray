@@ -10,7 +10,7 @@ variable "private_key_path" {
 }
 ##AWS Specific Vars
 variable "aws_worker_count" {
-  default = 2
+  default = 3
 }
 variable "aws_key_name" {
   default = "jruels"
