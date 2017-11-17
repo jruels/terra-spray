@@ -6,14 +6,16 @@ resource "null_resource" "ansible-provision" {
   }
 
   provisioner "local-exec" {
-    command = "echo \"${format("%s ansible_ssh_user=%s", aws_instance.aws-k8s-master.0.public_ip, var.ssh_user)}\" >> kubespray/inventory/inventory"
+  #  command = "echo \"${format("%s ansible_ssh_user=%s", aws_instance.aws-k8s-master.0.public_ip, var.ssh_user)}\" >> kubespray/inventory/inventory"
+    command = "echo \"${format("%s ansible_ssh_host=%s ansible_ssh_user=%s", aws_instance.aws-k8s-master.0.private_dns, aws_instance.aws-k8s-master.0.public_ip, var.ssh_user)}\" >> kubespray/inventory/inventory"
   }
   provisioner "local-exec" {
     command = "echo \"[etcd]\" >> kubespray/inventory/inventory"
   }
 
   provisioner "local-exec" {
-    command = "echo \"${format("%s ansible_ssh_user=%s", aws_instance.aws-k8s-master.0.public_ip, var.ssh_user)}\" >> kubespray/inventory/inventory"
+ #   command = "echo \"${format("%s ansible_ssh_user=%s", aws_instance.aws-k8s-master.0.public_ip, var.ssh_user)}\" >> kubespray/inventory/inventory"
+    command = "echo \"${format("%s ansible_ssh_host=%s ansible_ssh_user=%s", aws_instance.aws-k8s-master.0.private_dns, aws_instance.aws-k8s-master.0.public_ip, var.ssh_user)}\" >> kubespray/inventory/inventory"
   }
 
   provisioner "local-exec" {
@@ -21,7 +23,7 @@ resource "null_resource" "ansible-provision" {
   }
 
   provisioner "local-exec" {
-    command = "echo \"${join("\n",formatlist("%s ansible_ssh_user=%s", aws_instance.k8s-members.*.public_ip, var.ssh_user))}\" >> kubespray/inventory/inventory"
+    command = "echo \"${join("\n",formatlist("%s ansible_ssh_host=%s ansible_ssh_user=%s", aws_instance.k8s-members.*.private_dns, aws_instance.k8s-members.*.public_ip, var.ssh_user))}\" >> kubespray/inventory/inventory"
   }
 
   provisioner "local-exec" {
