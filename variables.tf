@@ -18,6 +18,9 @@ variable "aws_key_name" {
 variable "aws_instance_size" {
   default = "t2.medium"
 }
+variable "aws_jenkins_instance_size" {
+  default = "t2.micro"
+}
 variable "aws_region" {
   default = "us-west-1"
 }
