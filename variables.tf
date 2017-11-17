@@ -16,7 +16,7 @@ variable "aws_key_name" {
   default = "jruels"
 }
 variable "aws_instance_size" {
-  default = "t2.micro"
+  default = "t2.small"
 }
 variable "aws_region" {
   default = "us-west-1"
