@@ -40,7 +40,7 @@ node {
             sh "echo Creating AWS Infrastructure"
             sh "terraform init"
             sh "terraform apply -auto-approve"
-            sh "sleeping to allow startup"
+            sh "echo sleeping to allow startup"
             sh "sleep 1m"
 
     }
