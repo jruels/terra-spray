@@ -55,8 +55,8 @@ node {
         /* Now let's deploy Kubernetes */
         ansiblePlaybook( 
         playbook: 'kubespray/cluster.yml',
-        inventory: 'path/to/inventory.ini', 
-        credentialsId: 'sample-ssh-key', 
+        inventory: 'kubespray/inventory/inventory', 
+        credentialsId: 'ansible', 
         extras: '-b -u ubuntu')
 }
     }
