@@ -50,6 +50,9 @@ node {
         inventory: 'kubespray/inventory/inventory', 
         extras: '--private-key /var/jenkins_home/.ssh/ansible -b -u ubuntu') 
     }
+    stage("Install Kubespray dependencies") {
+        sh "pip install -r https://raw.githubusercontent.com/kubernetes-incubator/kubespray/master/requirements.txt"
+    }
     stage("Deploy Kubernetes") {
         /* Now let's deploy Kubernetes */
         ansiblePlaybook( 
