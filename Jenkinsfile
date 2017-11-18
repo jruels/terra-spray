@@ -43,4 +43,21 @@ node {
 
     }
 }
+    stage("Install Ansible requirements") {
+        /* Install Python required for Ansible */
+        ansiblePlaybook( 
+        playbook: 'setup.yml',
+        inventory: 'kubespray/inventory/inventory', 
+        credentialsId: 'ansible', 
+        extras: '-b ') 
+    }
+    stage("Deploy Kubernetes") {
+        /* Now let's deploy Kubernetes */
+        ansiblePlaybook( 
+        playbook: 'kubespray/cluster.yml',
+        inventory: 'path/to/inventory.ini', 
+        credentialsId: 'sample-ssh-key', 
+        extras: '-b')
+}
+    }
 }
