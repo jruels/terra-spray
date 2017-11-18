@@ -71,16 +71,3 @@ resource "aws_instance" "k8s-members" {
   }
 }
 
-##Create Jenkins server
-#resource "aws_instance" "jenkins-master" {
-#  subnet_id              = "${var.aws_subnet_id}"
-#  depends_on             = ["aws_security_group.k8s_sg"]
-#  ami                    = "${data.aws_ami.ubuntu.id}"
-#  instance_type          = "${var.aws_jenkins_instance_size}"
-#  vpc_security_group_ids = ["${aws_security_group.k8s_sg.id}"]
-#  key_name               = "${var.aws_key_name}"
-#  tags {
-#    Name = "jenkins-master"
-#    role = "jenkins"
-#  }
-#}
