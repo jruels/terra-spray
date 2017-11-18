@@ -60,4 +60,3 @@ node {
         extras: '-b -u ubuntu')
 }
     }
-}
