@@ -60,4 +60,11 @@ node {
         inventory: 'kubespray/inventory/inventory', 
         extras: '--private-key /var/jenkins_home/.ssh/ansible -b -u ubuntu')
 }
+    stage("Deploy app on Kubernetes") {
+        /* Deploy app we built from dockerfile onto our Kubernetes cluster*/
+        ansiblePlaybook(
+        playbook: 'deploy_node.yml',
+        inventory: 'kubespray/inventory/inventory',
+        extras: '--private-key /var/jenkins_home/.ssh/ansible -u ubuntu')
     }
+}
