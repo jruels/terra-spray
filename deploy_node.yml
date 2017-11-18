@@ -1,0 +1,27 @@
+---
+
+#######################################
+# Deploy and expose Nginx service
+#######################################
+
+# Expects kubectl being configured on the local machine
+# using kubectl.yaml playbook
+
+
+- hosts: kube-master
+
+  tasks:
+
+  - name: Launch 3 ngix pods
+    command: "kubectl run opencamp2017 --image=aslaen/opencamp2017 --port=8000 --replicas=3"
+
+  - name: Expose nginx
+    command: "kubectl expose deployment opencamp2017 --port=80 --target-port=8000 --type NodePort"
+
+  - name: Get exposed port
+    command: "kubectl get svc opencamp2017 --output=jsonpath='{range .spec.ports[0]}{.nodePort}'"
+    register: result
+  - set_fact:
+      node_port: "{{ result.stdout }}"
+
+  - debug: msg="Exposed port {{ node_port }}"
