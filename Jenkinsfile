@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("aslaen/hellonode")
+        app = docker.build("getintodevops/hellonode")
     }
 
     stage('Test image') {
@@ -33,12 +33,4 @@ node {
             app.push("latest")
         }
     }
-/*    stage('Build AWS Infrastructure') {
-      sshagent ([aws_creds_key]) {
-        /* Terraform is used to build the AWS infra required for Kubernetes: */
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-        }
-    } */
 }
