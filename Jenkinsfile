@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("aslaen/opencamp2017", "-f app/dockerfile .")
+        app = docker.build("aslaen/opencamp2017", "-f app/dockerfile app/.")
     }
 
     stage('Test image') {
