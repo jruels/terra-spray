@@ -4,8 +4,8 @@ provider "aws" {
 }
 
 ##Create security group
-resource "aws_security_group" "k8s_sg" {
-  name        = "k8s_sg"
+resource "aws_security_group" "aws_k8s_sg" {
+  name        = "aws-k8s_sg"
   vpc_id            = "${var.aws_vpc_id}"
   description = "Allow all inbound traffic necessary for Kubernetes"
   ingress {
@@ -23,7 +23,7 @@ resource "aws_security_group" "k8s_sg" {
     ]
   }
   tags {
-    Name = "k8s_sg"
+    Name = "aws_k8s_sg"
   }
 }
 
@@ -44,10 +44,10 @@ data "aws_ami" "ubuntu" {
 ##Create k8s Master Instance
 resource "aws_instance" "aws-k8s-master" {
   subnet_id              = "${var.aws_subnet_id}"
-  depends_on             = ["aws_security_group.k8s_sg"]
+  depends_on             = ["aws_security_group.aws_k8s_sg"]
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "${var.aws_instance_size}"
-  vpc_security_group_ids = ["${aws_security_group.k8s_sg.id}"]
+  vpc_security_group_ids = ["${aws_security_group.aws_k8s_sg.id}"]
   key_name               = "${var.aws_key_name}"
   tags {
     Name = "k8s-master"
@@ -58,10 +58,10 @@ resource "aws_instance" "aws-k8s-master" {
 ##Create AWS k8s Workers
 resource "aws_instance" "k8s-members" {
   subnet_id              = "${var.aws_subnet_id}"
-  depends_on             = ["aws_security_group.k8s_sg"]
+  depends_on             = ["aws_security_group.aws_k8s_sg"]
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "${var.aws_instance_size}"
-  vpc_security_group_ids = ["${aws_security_group.k8s_sg.id}"]
+  vpc_security_group_ids = ["${aws_security_group.aws_k8s_sg.id}"]
   key_name               = "${var.aws_key_name}"
   count                  = "${var.aws_worker_count}"
   tags {
