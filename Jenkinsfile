@@ -38,6 +38,7 @@ node {
         /* Using Terraform to create AWS infra */
         withAWS(credentials:'aws-creds') {
             sh "echo Creating AWS Infrastructure"
+            sh "terraform init"
             sh "terraform apply -auto-approve"
 
     }
