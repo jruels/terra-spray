@@ -48,15 +48,13 @@ node {
         ansiblePlaybook( 
         playbook: 'setup.yml',
         inventory: 'kubespray/inventory/inventory', 
-        credentialsId: 'ansible', 
-        extras: '-b -u ubuntu') 
+        extras: '--private-key /var/jenkins_home/.ssh/ansible -b -u ubuntu') 
     }
     stage("Deploy Kubernetes") {
         /* Now let's deploy Kubernetes */
         ansiblePlaybook( 
         playbook: 'kubespray/cluster.yml',
         inventory: 'kubespray/inventory/inventory', 
-        credentialsId: 'ansible', 
-        extras: '-b -u ubuntu')
+        extras: '--private-key /var/jenkins_home/.ssh/ansible -b -u ubuntu')
 }
     }
