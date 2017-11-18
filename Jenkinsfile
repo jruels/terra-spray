@@ -33,4 +33,12 @@ node {
             app.push("latest")
         }
     }
+
+    stage("Create AWS Infrastructure") {
+        /* Using Terraform to create AWS infra */
+        withAWS(credentials:'aws-creds') {
+            sh "echo Creating AWS Infrastructure"
+            sh "terraform apply -auto-approve"
+
+    }
 }
