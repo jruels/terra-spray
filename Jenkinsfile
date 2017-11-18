@@ -49,7 +49,7 @@ node {
         playbook: 'setup.yml',
         inventory: 'kubespray/inventory/inventory', 
         credentialsId: 'ansible', 
-        extras: '-b ') 
+        extras: '-b -u ubuntu') 
     }
     stage("Deploy Kubernetes") {
         /* Now let's deploy Kubernetes */
@@ -57,7 +57,7 @@ node {
         playbook: 'kubespray/cluster.yml',
         inventory: 'path/to/inventory.ini', 
         credentialsId: 'sample-ssh-key', 
-        extras: '-b')
+        extras: '-b -u ubuntu')
 }
     }
 }
