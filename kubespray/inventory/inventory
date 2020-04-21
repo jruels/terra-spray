@@ -1,11 +1,11 @@
 [kube-master]
-ip-172-31-31-63.us-west-1.compute.internal ansible_ssh_host=52.53.205.113 ansible_ssh_user=ubuntu
+ip-172-31-21-214.us-west-1.compute.internal ansible_ssh_host=204.236.147.65 ansible_ssh_user=ubuntu
 [etcd]
-ip-172-31-31-63.us-west-1.compute.internal ansible_ssh_host=52.53.205.113 ansible_ssh_user=ubuntu
+ip-172-31-21-214.us-west-1.compute.internal ansible_ssh_host=204.236.147.65 ansible_ssh_user=ubuntu
 [kube-node]
-ip-172-31-17-53.us-west-1.compute.internal ansible_ssh_host=13.57.26.172 ansible_ssh_user=ubuntu
-ip-172-31-25-58.us-west-1.compute.internal ansible_ssh_host=54.67.7.240 ansible_ssh_user=ubuntu
-ip-172-31-27-101.us-west-1.compute.internal ansible_ssh_host=13.56.140.43 ansible_ssh_user=ubuntu
+ip-172-31-19-6.us-west-1.compute.internal ansible_ssh_host=54.151.85.37 ansible_ssh_user=ubuntu
+ip-172-31-20-81.us-west-1.compute.internal ansible_ssh_host=52.53.244.56 ansible_ssh_user=ubuntu
+ip-172-31-31-222.us-west-1.compute.internal ansible_ssh_host=13.57.10.30 ansible_ssh_user=ubuntu
 
 [k8s-cluster:children]
 kube-node
